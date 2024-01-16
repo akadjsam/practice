@@ -10,7 +10,10 @@ class Cipher:
             if i == " ":
                 self.cipher_list.append(i)
             else:
-                self.cipher_list.append(chr(ord(i) + num))
+                if (ord(i) + num > 90 and ord(i) + num < 97) or ord(i) + num > 122:
+                    self.cipher_list.append(chr(ord(i) + (num - 26)))
+                else:
+                    self.cipher_list.append(chr(ord(i) + num))
         input_str = "".join(self.cipher_list)
         self.cipher_str = input_str
         self.cipher_num = num
@@ -24,6 +27,12 @@ class Cipher:
             if i == " ":
                 self.cipher_list.append(i)
             else:
-                self.cipher_list.append(chr(ord(i) - self.cipher_num))
+                # self.cipher_list.append(chr(ord(i) - self.cipher_num))
+                if (ord(i) - self.cipher_num > 57 and ord(i) - self.cipher_num < 65) \
+                        or (ord(i) - self.cipher_num > 90 and ord(i) - self.cipher_num < 97):
+                    self.cipher_list.append(chr(ord(i) - (self.cipher_num - 26)))
+                else:
+                    self.cipher_list.append(chr(ord(i) - self.cipher_num))
+
         str = "".join(self.cipher_list)
         return str
